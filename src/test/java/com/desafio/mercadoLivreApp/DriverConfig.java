@@ -8,22 +8,14 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
-public class AppiumDriverConfig {
-    public final AppiumDriver driver;
+public class DriverConfig {
+    private static AppiumDriver driver;
 
-    private static AppiumDriverConfig _instance;
-
-    public static AppiumDriverConfig Instance(){
-        if (AppiumDriverConfig._instance == null){
-            AppiumDriverConfig._instance = new AppiumDriverConfig();
-        }
-        return AppiumDriverConfig._instance;
-    }
-    private AppiumDriverConfig() {
-
+    public static void setUp(){
         File apk =
-                new File("C:\\Users\\Dell\\Documents\\desafioAutomacao\\AutomacaoMeLiMobile\\drives\\mercadolibre-10-229-2.apk");
+                new File(System.getProperty("user.dir") + "\\drives\\mercadolibre-10-229-2.apk");
 
         DesiredCapabilities configuracoes = new DesiredCapabilities();
         configuracoes.setCapability(MobileCapabilityType.APP, apk.getAbsolutePath());
@@ -36,7 +28,12 @@ public class AppiumDriverConfig {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         driver = new AppiumDriver(urlConexao, configuracoes);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    }
+
+    public static AppiumDriver getDriver(){
+        DriverConfig.setUp();
+        return driver;
     }
 }

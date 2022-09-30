@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.desafio.mercadoLivreApp.CommosUtils" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-29T02:56:11" hostname="DESKTOP-3JKRKUN" time="0.025">
-  <properties/>
-  <testcase name="testRetornaDadosSc()" classname="com.desafio.mercadoLivreApp.CommosUtils" time="0.025"/>
-  <system-out><![CDATA[limpa vidros
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

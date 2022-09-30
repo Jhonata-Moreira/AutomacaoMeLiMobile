@@ -2,11 +2,12 @@ package com.desafio.mercadoLivreApp.PagesObjects;
 
 import com.desafio.mercadoLivreApp.CommosUtils;
 import com.desafio.mercadoLivreApp.PageObject;
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HomePage extends PageObject {
 
@@ -17,17 +18,21 @@ public class HomePage extends PageObject {
         super(driver);
     }
 
-    public void buscaProduto(String item) throws IOException {
+    public WidgetProdutosPage buscaProduto(String item) throws IOException {
         visualizaElemento(driver, 50, btnBusca);
-        driver.findElement(btnBusca);
+        driver.findElement(btnBusca).click();
+
         // Busca item do CSV que será utilizado na pesquisa
-        CommosUtils.retornaDadosCSV("nome");
+        ArrayList<String> produto = CommosUtils.retornaDadosCSV("nome");
+
         // Converte o item do BDD para poder pegar o valor em array
-        driver.findElement(inpBuscaProduto).sendKeys(CommosUtils.produtoCSV[Integer.parseInt(item)]);
+        driver.findElement(inpBuscaProduto).sendKeys(produto.get(Integer.parseInt(item)));
+        driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "search"));
+
+        CommosUtils.getScreenshoot(driver, "Busca o produto - " +
+                produto.get(Integer.parseInt(item)) + "");
+
+        return new WidgetProdutosPage(driver);
     }
 
-    @Override
-    public void buscarElementos() {
-
-    }
 }
