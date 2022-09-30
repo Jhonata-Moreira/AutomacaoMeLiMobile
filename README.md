@@ -9,7 +9,7 @@ Passo a passo para buildar a automação em sua maquina
 * Android Studio instalado
 * Emulador Android Studio
 * Extensão Gherkin e Cucumber for Java instaladas na IDE utilizada
-
+* Após clonar o projeto, criar uma pasta na raiz com o nome **Screenshot**
 
 #### Link de recomendação para a instalação dos requisitos listados
 https://support.smartbear.com/testcomplete/docs/app-testing/mobile/device-cloud/configure-appium/android-on-windows.html
